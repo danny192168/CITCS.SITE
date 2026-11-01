@@ -1,0 +1,2312 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CITCS.site — Student Hosting Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ================================
+       CSS Variables / Colors
+       ================================ */
+      :root {
+        --primary: #000000;
+        --secondary: #666666;
+        --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        --bg-white: #ffffff;
+        --bg-gray: #f3f4f6;
+        --text-dark: #000000;
+        --text-muted: #555555;
+        --border: #e5e7eb;
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        --radius-sm: 8px;
+        --radius: 12px;
+        --radius-pill: 9999px;
+        --max-width: 1100px;
+        --navbar-height: 72px;
+      }
+
+      /* ================================
+       Dark Theme (DEFAULT)
+       ================================ */
+      [data-theme="dark"] {
+        --primary: #ffffff;
+        --secondary: #888888;
+        --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        --bg-white: #121212;
+        --bg-gray: #1e1e1e;
+        --text-dark: #ffffff;
+        --text-muted: #a1a1aa;
+        --border: #333333;
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+      }
+
+      [data-theme="dark"] .navbar {
+        background: rgba(18, 18, 18, 0.92);
+        border-bottom-color: var(--border);
+      }
+
+      [data-theme="dark"] .hero {
+        background:
+          radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
+          radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
+          var(--bg-white);
+      }
+
+      [data-theme="dark"] .sky-toggle {
+        background: linear-gradient(180deg, #171717 0%, #262626 100%);
+        border-color: rgba(255, 255, 255, 0.08);
+      }
+      [data-theme="dark"] .sky-toggle .celestial {
+        transform: translateX(38px);
+        background: #f5f5f5;
+        box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+      }
+      [data-theme="dark"] .sky-toggle .cloud {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      [data-theme="dark"] .sky-toggle .star {
+        opacity: 1;
+      }
+
+      /* ================================
+       Base Styles
+       ================================ */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: var(--navbar-height);
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--text-dark);
+        background: var(--bg-white);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        width: 90%;
+        max-width: var(--max-width);
+        margin-inline: auto;
+      }
+
+      .gradient-text {
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* ================================
+       Buttons
+       ================================ */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: 0.65rem 1.5rem;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-radius: var(--radius-pill);
+        cursor: pointer;
+        border: none;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      .btn-gradient {
+        background: var(--gradient);
+        color: #fff;
+      }
+      [data-theme="dark"] .btn-gradient {
+        color: #000;
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--text-dark);
+        border: 2px solid var(--border);
+      }
+      .btn-outline:hover {
+        border-color: var(--primary);
+      }
+      .btn-sm {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.85rem;
+      }
+
+      /* ================================
+       Navbar
+       ================================ */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--navbar-height);
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        z-index: 1000;
+        transition:
+          box-shadow 0.3s ease,
+          background 0.3s ease,
+          border-color 0.3s ease;
+      }
+      .navbar.scrolled {
+        box-shadow: var(--shadow);
+      }
+      .navbar .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+      }
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+      .nav-links a {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--text-dark);
+        position: relative;
+        transition: color 0.2s ease;
+        white-space: nowrap;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--gradient);
+        border-radius: 2px;
+        transition: width 0.3s ease;
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      /* ================================
+       Grayscale Sky Theme Toggle
+       ================================ */
+      .sky-toggle {
+        width: 72px;
+        height: 32px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #e5e5e5 0%, #d4d4d4 100%);
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        transition: background 0.6s ease;
+        padding: 0;
+        flex-shrink: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .sky-toggle .celestial {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        top: 3px;
+        left: 4px;
+        background: #fff;
+        transition: all 0.6s cubic-bezier(0.68, -0.3, 0.32, 1.2);
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+        z-index: 2;
+      }
+      .sky-toggle .cloud {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 999px;
+        transition: all 0.6s ease;
+        z-index: 1;
+      }
+      .sky-toggle .cloud:nth-of-type(2) {
+        width: 16px;
+        height: 6px;
+        top: 7px;
+        left: 38px;
+        opacity: 1;
+      }
+      .sky-toggle .cloud:nth-of-type(3) {
+        width: 10px;
+        height: 4px;
+        top: 19px;
+        left: 54px;
+        opacity: 1;
+      }
+      .sky-toggle .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: #fff;
+        border-radius: 50%;
+        opacity: 0;
+        transition: all 0.6s ease;
+        z-index: 1;
+      }
+      .sky-toggle .star:nth-of-type(4) {
+        top: 5px;
+        left: 14px;
+      }
+      .sky-toggle .star:nth-of-type(5) {
+        top: 16px;
+        left: 36px;
+        width: 1.5px;
+        height: 1.5px;
+      }
+      .sky-toggle .star:nth-of-type(6) {
+        top: 6px;
+        left: 52px;
+      }
+
+      /* ================================
+       Hamburger
+       ================================ */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+      }
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 2.5px;
+        background: var(--text-dark);
+        border-radius: 2px;
+        margin: 3px 0;
+        transition: all 0.3s ease;
+      }
+      .hamburger.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      /* ================================
+       Hero Section
+       ================================ */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: var(--navbar-height);
+        background:
+          radial-gradient(circle at 20% 30%, rgba(0, 0, 0, 0.04) 0%, transparent 50%),
+          radial-gradient(circle at 80% 70%, rgba(102, 102, 102, 0.08) 0%, transparent 50%),
+          var(--bg-white);
+        transition: background 0.3s ease;
+        overflow: hidden;
+        border-bottom: 1px solid var(--border);
+      }
+      .hero-particles {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .hero > .container {
+        position: relative;
+        z-index: 1;
+        padding: 4rem 0;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 1rem;
+        background: var(--bg-gray);
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        font-weight: 600;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        width: fit-content;
+      }
+      .hero h1 {
+        font-size: clamp(2.2rem, 5vw, 3.2rem);
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -1px;
+        margin-bottom: 0.25rem;
+      }
+      .hero p {
+        color: var(--text-muted);
+        font-size: clamp(0.95rem, 2vw, 1.05rem);
+        line-height: 1.75;
+        max-width: 480px;
+      }
+      .hero-cta {
+        display: inline-flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 0.5rem;
+      }
+
+      /* Hero image placeholder */
+      .hero-image-wrap {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .hero-image {
+        width: 280px;
+        height: 280px;
+        object-fit: cover;
+        position: relative;
+        z-index: 2;
+        display: block;
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        animation: blobMorph 6s ease-in-out infinite;
+        box-shadow: var(--shadow-lg);
+      }
+      @keyframes blobMorph {
+        0%,
+        100% {
+          border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+        50% {
+          border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+        }
+      }
+
+      /* Decorative dots */
+      .dot {
+        position: absolute;
+        border-radius: 50%;
+        z-index: 1;
+      }
+      .dot-1 {
+        width: 20px;
+        height: 20px;
+        background: var(--text-dark);
+        top: 5%;
+        right: 15%;
+        opacity: 0.8;
+      }
+      .dot-2 {
+        width: 14px;
+        height: 14px;
+        background: var(--secondary);
+        bottom: 12%;
+        left: 8%;
+        opacity: 0.6;
+      }
+      .dot-3 {
+        width: 10px;
+        height: 10px;
+        background: var(--text-dark);
+        top: 20%;
+        left: 2%;
+        opacity: 0.5;
+      }
+      .dot-4 {
+        width: 18px;
+        height: 18px;
+        background: var(--secondary);
+        bottom: 22%;
+        right: 5%;
+        opacity: 0.7;
+      }
+
+      /* ================================
+       Sections
+       ================================ */
+      .section {
+        padding: 5rem 0;
+      }
+      .section:nth-child(even) {
+        background: var(--bg-gray);
+      }
+      .section:nth-child(odd) {
+        background: var(--bg-white);
+      }
+      .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+      .heading-bar {
+        width: 60px;
+        height: 4px;
+        background: var(--gradient);
+        border-radius: 2px;
+        margin: 0 auto 1rem;
+      }
+      .section-subtitle {
+        text-align: center;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto 2.5rem;
+        font-size: 0.95rem;
+      }
+
+      /* ================================
+       Cards
+       ================================ */
+      .card {
+        background: var(--bg-white);
+        border-radius: var(--radius);
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          background 0.3s ease;
+        border: 1px solid var(--border);
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+      [data-theme="dark"] .card {
+        background: #1a1a1a;
+        border-color: var(--border);
+      }
+      .card h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: var(--text-dark);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .card-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: var(--gradient);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+      }
+      [data-theme="dark"] .card-icon {
+        color: #000;
+      }
+      .card p,
+      .card li {
+        color: var(--text-muted);
+        font-size: 0.92rem;
+        line-height: 1.75;
+      }
+      .card ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+      .card li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+      .card li::before {
+        content: "→";
+        color: var(--primary);
+        font-weight: 600;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      /* ================================
+       Steps
+       ================================ */
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .step {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        padding: 1.1rem 1.25rem;
+        background: var(--bg-gray);
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border);
+        transition: background 0.3s ease;
+      }
+      [data-theme="dark"] .step {
+        background: #1e1e1e;
+      }
+      .step-num {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--gradient);
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      [data-theme="dark"] .step-num {
+        color: #000;
+      }
+      .step-body {
+        flex: 1;
+      }
+      .step-body strong {
+        display: block;
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 0.2rem;
+      }
+      .step-body span {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+      }
+      .step-body code {
+        background: var(--bg-white);
+        padding: 0.15rem 0.4rem;
+        border-radius: 4px;
+        font-family: "Fira Code", monospace;
+        font-size: 0.82rem;
+        color: var(--text-dark);
+        border: 1px solid var(--border);
+      }
+      [data-theme="dark"] .step-body code {
+        background: #121212;
+      }
+
+      /* ================================
+       Video Box
+       ================================ */
+      .video-box {
+        margin-top: 1.5rem;
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: #000;
+        aspect-ratio: 16/9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .video-box a {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+      }
+      .video-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.85;
+      }
+      .play-icon {
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 3;
+        pointer-events: none;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+      .play-icon svg {
+        width: 22px;
+        height: 22px;
+        fill: var(--primary);
+        margin-left: 3px;
+      }
+      .video-caption {
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-top: 0.5rem;
+      }
+
+      /* ================================
+       Info Grid
+       ================================ */
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+      }
+      .info-card {
+        background: var(--bg-white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.75rem;
+        text-align: center;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          background 0.3s ease;
+      }
+      .info-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+      [data-theme="dark"] .info-card {
+        background: #1a1a1a;
+      }
+      .info-card .num {
+        font-size: 2rem;
+        font-weight: 700;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+      }
+      .info-card .label {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-top: 0.5rem;
+        font-weight: 500;
+      }
+
+      /* ================================
+       Subdomain Banner
+       ================================ */
+      .subdomain-banner {
+        background: var(--gradient);
+        border-radius: var(--radius);
+        padding: 2.5rem 2rem;
+        text-align: center;
+        margin-bottom: 2.5rem;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .subdomain-banner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 80% 20%,
+          rgba(255, 255, 255, 0.12) 0%,
+          transparent 50%
+        );
+        pointer-events: none;
+      }
+      .subdomain-banner h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        position: relative;
+        z-index: 1;
+      }
+      .subdomain-banner p {
+        font-size: 0.95rem;
+        opacity: 0.9;
+        max-width: 520px;
+        margin: 0 auto 1.25rem;
+        position: relative;
+        z-index: 1;
+      }
+      .subdomain-example {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 0.7rem 1.4rem;
+        border-radius: var(--radius-sm);
+        font-family: "Fira Code", monospace;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        position: relative;
+        z-index: 1;
+        backdrop-filter: blur(4px);
+      }
+      .subdomain-example .highlight {
+        color: #fbbf24;
+        font-weight: 600;
+      }
+
+      /* FIX: Dark mode banner text color */
+      [data-theme="dark"] .subdomain-banner {
+        color: #000;
+      }
+      [data-theme="dark"] .subdomain-banner h2,
+      [data-theme="dark"] .subdomain-banner p {
+        color: #000;
+      }
+      [data-theme="dark"] .subdomain-example {
+        background: rgba(0, 0, 0, 0.08);
+        color: #000;
+      }
+      [data-theme="dark"] .subdomain-example .highlight {
+        color: #b45309;
+      }
+
+      /* ================================
+       Hosting Alternatives Grid
+       ================================ */
+      .hosting-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+      }
+      .hosting-card {
+        background: var(--bg-white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          background 0.3s ease;
+        display: flex;
+        gap: 1.25rem;
+        align-items: flex-start;
+      }
+      .hosting-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+      [data-theme="dark"] .hosting-card {
+        background: #1a1a1a;
+      }
+      .hosting-left {
+        flex-shrink: 0;
+        width: 72px;
+        text-align: center;
+      }
+      .hosting-logo {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 0.5rem;
+      }
+      .hosting-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+      /* Invert GitHub logo in dark mode */
+      [data-theme="dark"] .github-logo {
+        filter: invert(1);
+      }
+      .hosting-left h4 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        line-height: 1.3;
+      }
+      .hosting-right {
+        flex: 1;
+        min-width: 0;
+      }
+      .hosting-right p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.65;
+      }
+      .hosting-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        margin-bottom: 0.6rem;
+      }
+      .hosting-tag {
+        display: inline-block;
+        padding: 0.2rem 0.55rem;
+        border-radius: 999px;
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
+      .tag-free {
+        background: rgba(34, 197, 94, 0.12);
+        color: #16a34a;
+      }
+      .tag-beginner {
+        background: rgba(96, 165, 250, 0.12);
+        color: #2563eb;
+      }
+      [data-theme="dark"] .tag-free {
+        background: rgba(34, 197, 94, 0.18);
+        color: #4ade80;
+      }
+      [data-theme="dark"] .tag-beginner {
+        background: rgba(96, 165, 250, 0.18);
+        color: #60a5fa;
+      }
+      /* Responsive: smaller padding on narrow screens */
+      @media (max-width: 600px) {
+        .hosting-card {
+          padding: 1rem;
+          gap: 0.875rem;
+        }
+        .hosting-left {
+          width: 64px;
+        }
+        .hosting-logo {
+          width: 40px;
+          height: 40px;
+        }
+        .hosting-left h4 {
+          font-size: 0.82rem;
+        }
+        .hosting-right p {
+          font-size: 0.8rem;
+        }
+      }
+
+      /* ================================
+       Domain Price Table
+       ================================ */
+      .domain-table-wrap {
+        overflow-x: auto;
+        margin-top: 1.5rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+      }
+      .domain-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+      }
+      .domain-table th,
+      .domain-table td {
+        padding: 0.85rem 1.25rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+      }
+      .domain-table th {
+        background: var(--bg-gray);
+        font-weight: 600;
+        color: var(--text-dark);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .domain-table td {
+        color: var(--text-muted);
+      }
+      .domain-table tr:last-child td {
+        border-bottom: none;
+      }
+      .domain-table tr:hover td {
+        background: var(--bg-gray);
+      }
+      .price {
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+      .tld {
+        font-family: "Fira Code", monospace;
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+
+      /* ================================
+       Discord Section
+       ================================ */
+      .discord-section {
+        background: var(--bg-gray);
+        transition: background 0.3s ease;
+      }
+      [data-theme="dark"] .discord-section {
+        background: #1e1e1e;
+      }
+      .discord-card {
+        background: linear-gradient(135deg, #5865f2 0%, #4752c4 100%);
+        border-radius: var(--radius);
+        padding: 3rem 2.5rem;
+        color: #fff;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+      .discord-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.06) 0%, transparent 50%);
+        pointer-events: none;
+      }
+      .discord-card h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        position: relative;
+        z-index: 1;
+      }
+      .discord-card > p {
+        font-size: 0.95rem;
+        opacity: 0.9;
+        max-width: 520px;
+        margin: 0 auto 1.5rem;
+        position: relative;
+        z-index: 1;
+        line-height: 1.75;
+      }
+      .discord-features {
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        margin-bottom: 1.75rem;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+      .discord-feature {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.88rem;
+        font-weight: 500;
+        opacity: 0.95;
+      }
+      .discord-feature svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+      }
+      .discord-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 2rem;
+        background: #fff;
+        color: #5865f2;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        border-radius: var(--radius-pill);
+        border: none;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        text-decoration: none;
+        position: relative;
+        z-index: 1;
+      }
+      .discord-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.3);
+      }
+      .discord-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* ================================
+       Footer
+       ================================ */
+      .footer {
+        background: #000;
+        color: #9ca3af;
+        padding: 2.5rem 0;
+        text-align: center;
+        font-size: 0.85rem;
+        transition: background 0.3s ease;
+      }
+      [data-theme="dark"] .footer {
+        background: #0a0a0a;
+        border-top: 1px solid var(--border);
+      }
+      .footer a {
+        color: #fff;
+        font-weight: 500;
+      }
+
+      /* ================================
+       Responsive
+       ================================ */
+      @media (max-width: 900px) {
+        .hamburger {
+          display: flex;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 3rem;
+        }
+        .hero-content {
+          align-items: center;
+        }
+        .hero p {
+          max-width: 100%;
+        }
+        .hero-image-wrap {
+          order: -1;
+        }
+        .hero-image {
+          width: 220px;
+          height: 220px;
+        }
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+        .hosting-grid {
+          grid-template-columns: 1fr;
+        }
+        .discord-features {
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+        .domain-table-wrap {
+          font-size: 0.85rem;
+        }
+        .domain-table th,
+        .domain-table td {
+          padding: 0.65rem 0.85rem;
+        }
+        .nav-links {
+          position: absolute;
+          top: var(--navbar-height);
+          left: 0;
+          width: 100%;
+          background: var(--bg-white);
+          backdrop-filter: blur(10px);
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 1.5rem;
+          gap: 1rem;
+          border-bottom: 1px solid var(--border);
+          box-shadow: var(--shadow-lg);
+          transform: translateY(-10px);
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transition: all 0.3s ease;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .btn,
+        .card,
+        .info-card,
+        .step,
+        .video-box,
+        .hero-image-placeholder,
+        .hosting-card {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================================
+     Navbar
+     ================================ -->
+    <header class="navbar" id="navbar">
+      <div class="container">
+        <a href="#" class="logo gradient-text">CITCS.site</a>
+        <nav style="display: flex; align-items: center; gap: 1rem">
+          <div class="nav-links" id="nav-links">
+            <a href="#overview">Overview</a>
+            <a href="#github">GitHub</a>
+            <a href="#no-github">Direct</a>
+            <a href="#subdomain">Subdomain</a>
+            <a href="#alternatives">Other Hosts</a>
+            <a href="#domains">Domains</a>
+            <a href="#discord">Discord</a>
+          </div>
+          <button class="sky-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+            <div class="celestial"></div>
+            <div class="cloud"></div>
+            <div class="cloud"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+          </button>
+          <button
+            class="hamburger"
+            id="hamburger"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+            aria-controls="nav-links"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ================================
+     Hero Section
+     ================================ -->
+    <section class="hero" id="home">
+      <div class="hero-particles" id="tsparticles"></div>
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              CITCS Student Hosting Guide
+            </div>
+            <h1 class="gradient-text">
+              Get your own
+              <span
+                style="
+                  background: var(--gradient);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                  background-clip: text;
+                "
+                >student subdomain</span
+              >
+            </h1>
+            <p>
+              A free, simple way for CITCS students to host their portfolio, projects, or
+              experiments online using Vercel and a
+              <strong>www.[yourname].citcs.site</strong> subdomain.
+            </p>
+            <div class="hero-cta">
+              <a href="#github" class="btn btn-gradient">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                  ></path>
+                </svg>
+                Start with GitHub
+              </a>
+              <a href="#no-github" class="btn btn-outline">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Skip GitHub
+              </a>
+            </div>
+          </div>
+          <div class="hero-image-wrap">
+            <div class="dot dot-1"></div>
+            <div class="dot dot-2"></div>
+            <div class="dot dot-3"></div>
+            <div class="dot dot-4"></div>
+            <img src="random-cat.png" alt="Random cat" class="hero-image" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+     Overview
+     ================================ -->
+    <section class="section" id="overview">
+      <div class="container">
+        <h2 class="section-title gradient-text">How it works</h2>
+        <div class="heading-bar"></div>
+        <p class="section-subtitle">
+          Three simple steps from zero to a live website on your own CITCS subdomain.
+        </p>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="num">1</div>
+            <div class="label">Build your site</div>
+          </div>
+          <div class="info-card">
+            <div class="num">2</div>
+            <div class="label">Deploy to Vercel</div>
+          </div>
+          <div class="info-card">
+            <div class="num">3</div>
+            <div class="label">Claim your subdomain</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+     Option 1: With GitHub
+     ================================ -->
+    <section class="section" id="github">
+      <div class="container">
+        <h2 class="section-title gradient-text">Option 1: Host with GitHub + Vercel</h2>
+        <div class="heading-bar"></div>
+        <p class="section-subtitle">
+          The recommended path. You get version control, easy updates, and a professional workflow.
+        </p>
+        <div class="card">
+          <h3>
+            <span class="card-icon">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </span>
+            Step-by-step guide
+          </h3>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-body">
+                <strong>Create a GitHub account</strong>
+                <span
+                  >Go to
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    style="color: var(--primary); text-decoration: underline"
+                    >github.com</a
+                  >
+                  and sign up if you do not have one yet.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-body">
+                <strong>Create a new repository</strong>
+                <span
+                  >Click "New" and name it something like <code>my-portfolio</code>. Make it public.
+                  Initialize with a <code>README</code> if you want.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-body">
+                <strong>Upload your website files</strong>
+                <span
+                  >Add your <code>index.html</code>, CSS, JS, and assets. You can drag and drop
+                  files directly on GitHub or use GitHub Desktop.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-body">
+                <strong>Connect to Vercel</strong>
+                <span
+                  >Go to
+                  <a
+                    href="https://vercel.com"
+                    target="_blank"
+                    style="color: var(--primary); text-decoration: underline"
+                    >vercel.com</a
+                  >, sign up with GitHub, click "Add New Project", and import your repository.
+                  Vercel will build and deploy it automatically.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">5</div>
+              <div class="step-body">
+                <strong>Get your Vercel URL</strong>
+                <span
+                  >Vercel will give you a temporary URL like <code>my-portfolio.vercel.app</code>.
+                  Save this. You will need it for the subdomain step.</span
+                >
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 2rem">
+            <p
+              style="
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: var(--text-dark);
+                margin-bottom: 0.5rem;
+              "
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="display: inline; vertical-align: text-bottom; margin-right: 0.3rem"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                <line x1="7" y1="2" x2="7" y2="22"></line>
+                <line x1="17" y1="2" x2="17" y2="22"></line>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <line x1="2" y1="7" x2="7" y2="7"></line>
+                <line x1="2" y1="17" x2="7" y2="17"></line>
+                <line x1="17" y1="17" x2="22" y2="17"></line>
+                <line x1="17" y1="7" x2="22" y2="7"></line>
+              </svg>
+              Video Tutorial (coming soon)
+            </p>
+            <div class="video-box">
+              <a
+                href="https://www.youtube.com/watch?v=m98z6IkU4HI"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://img.youtube.com/vi/m98z6IkU4HI/maxresdefault.jpg"
+                  alt="YouTube thumbnail"
+                />
+              </a>
+              <div class="play-icon">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+              </div>
+            </div>
+            <p class="video-caption">Click to watch the step-by-step guide on YouTube</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+     Option 2: Without GitHub
+     ================================ -->
+    <section class="section" id="no-github">
+      <div class="container">
+        <h2 class="section-title gradient-text">Option 2: Host without GitHub</h2>
+        <div class="heading-bar"></div>
+        <p class="section-subtitle">
+          Vercel lets you deploy directly from your computer with drag-and-drop. Great for quick
+          experiments.
+        </p>
+        <div class="card">
+          <h3>
+            <span class="card-icon">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </span>
+            Step-by-step guide
+          </h3>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-body">
+                <strong>Build your website locally</strong>
+                <span
+                  >Create your <code>index.html</code> file (and CSS/JS if needed) on your computer.
+                  Make sure everything works by opening <code>index.html</code> in your
+                  browser.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-body">
+                <strong>Sign up on Vercel</strong>
+                <span
+                  >Go to
+                  <a
+                    href="https://vercel.com"
+                    target="_blank"
+                    style="color: var(--primary); text-decoration: underline"
+                    >vercel.com</a
+                  >
+                  and create an account using your email or Google account.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-body">
+                <strong>Drag and drop your files</strong>
+                <span
+                  >On the Vercel dashboard, click "Add New Project", then choose "Continue with
+                  Template" or drag your project folder directly onto the upload area. Vercel will
+                  deploy it instantly.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-body">
+                <strong>Copy your Vercel URL</strong>
+                <span
+                  >Once deployed, Vercel gives you a URL like <code>something.vercel.app</code>.
+                  Keep this URL. You will use it to connect your CITCS subdomain.</span
+                >
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 2rem">
+            <p
+              style="
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: var(--text-dark);
+                margin-bottom: 0.5rem;
+              "
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="display: inline; vertical-align: text-bottom; margin-right: 0.3rem"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                <line x1="7" y1="2" x2="7" y2="22"></line>
+                <line x1="17" y1="2" x2="17" y2="22"></line>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <line x1="2" y1="7" x2="7" y2="7"></line>
+                <line x1="2" y1="17" x2="7" y2="17"></line>
+                <line x1="17" y1="17" x2="22" y2="17"></line>
+                <line x1="17" y1="7" x2="22" y2="7"></line>
+              </svg>
+              Video Tutorial (coming soon)
+            </p>
+            <div class="video-box">
+              <a
+                href="https://www.youtube.com/watch?v=m98z6IkU4HI"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://img.youtube.com/vi/m98z6IkU4HI/maxresdefault.jpg"
+                  alt="YouTube thumbnail"
+                />
+              </a>
+              <div class="play-icon">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+              </div>
+            </div>
+            <p class="video-caption">Click to watch the step-by-step guide on YouTube</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+     Subdomain Section
+     ================================ -->
+    <section class="section" id="subdomain">
+      <div class="container">
+        <h2 class="section-title gradient-text">Claim your subdomain</h2>
+        <div class="heading-bar"></div>
+        <p class="section-subtitle">
+          Once your site is live on Vercel, request your own CITCS subdomain.
+        </p>
+        <div class="subdomain-banner">
+          <h2>Your address on the web</h2>
+          <p>
+            Every CITCS student can claim a subdomain in this format. It is yours for as long as you
+            are part of the department.
+          </p>
+          <div class="subdomain-example">
+            www.<span class="highlight">yourname</span>.citcs.site
+          </div>
+        </div>
+        <div class="card">
+          <h3>
+            <span class="card-icon">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+            </span>
+            How to set up your subdomain
+          </h3>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-body">
+                <strong>Make sure your site is deployed</strong>
+                <span
+                  >Complete either Option 1 or Option 2 above. Your site must be live on Vercel with
+                  a working <code>.vercel.app</code> URL before requesting a subdomain.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-body">
+                <strong>Choose your subdomain name</strong>
+                <span
+                  >Pick something professional like <code>www.johndoe.citcs.site</code> or
+                  <code>www.jdoe.citcs.site</code>. Avoid numbers or special characters if
+                  possible.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-body">
+                <strong>Submit your request on Discord</strong>
+                <span
+                  >Join the
+                  <a
+                    href="https://discord.gg/hj5Tu4Ers"
+                    target="_blank"
+                    style="color: var(--primary); text-decoration: underline"
+                    >UC CITCS Discord</a
+                  >
+                  and post your request in the subdomain channel with your full name, student ID,
+                  and Vercel deployment URL. An admin will configure the DNS record for you.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-body">
+                <strong>Add the domain in Vercel</strong>
+                <span
+                  >Go to your Vercel project dashboard → Settings → Domains. Add your requested
+                  subdomain (e.g. <code>www.johndoe.citcs.site</code>) and follow Vercel's
+                  verification steps. The admin will approve it on the DNS side.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">5</div>
+              <div class="step-body">
+                <strong>Wait for DNS propagation</strong>
+                <span
+                  >It usually takes a few minutes to a few hours for your subdomain to work
+                  everywhere. Once active, your site will be live at
+                  <code>www.[yourname].citcs.site</code>.</span
+                >
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 2rem">
+            <p
+              style="
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: var(--text-dark);
+                margin-bottom: 0.5rem;
+              "
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="display: inline; vertical-align: text-bottom; margin-right: 0.3rem"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                <line x1="7" y1="2" x2="7" y2="22"></line>
+                <line x1="17" y1="2" x2="17" y2="22"></line>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <line x1="2" y1="7" x2="7" y2="7"></line>
+                <line x1="2" y1="17" x2="7" y2="17"></line>
+                <line x1="17" y1="17" x2="22" y2="17"></line>
+                <line x1="17" y1="7" x2="22" y2="7"></line>
+              </svg>
+              Video Tutorial (coming soon)
+            </p>
+            <div class="video-box">
+              <a
+                href="https://www.youtube.com/watch?v=m98z6IkU4HI"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://img.youtube.com/vi/m98z6IkU4HI/maxresdefault.jpg"
+                  alt="YouTube thumbnail"
+                />
+              </a>
+              <div class="play-icon">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+              </div>
+            </div>
+            <p class="video-caption">Click to watch the subdomain setup walkthrough on YouTube</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+     Alternative Hosting Options
+     ================================ -->
+    <section class="section" id="alternatives">
+      <div class="container">
+        <h2 class="section-title gradient-text">Other hosting options</h2>
+        <div class="heading-bar"></div>
+        <p class="section-subtitle">
+          All of these platforms let you connect a custom subdomain like
+          <strong>www.[yourname].citcs.site</strong> to your deployed site. Pick the one that fits
+          your workflow.
+        </p>
+        <div class="hosting-grid">
+          <!-- Netlify -->
+          <div class="hosting-card">
+            <div class="hosting-left">
+              <div class="hosting-logo">
+                <img
+                  src="https://cdn.simpleicons.org/netlify/00C7B7"
+                  alt="Netlify"
+                  width="48"
+                  height="48"
+                />
+              </div>
+              <h4>Netlify</h4>
+            </div>
+            <div class="hosting-right">
+              <div class="hosting-tags">
+                <span class="hosting-tag tag-free">Free tier</span>
+                <span class="hosting-tag tag-beginner">Drag & drop</span>
+              </div>
+              <p>
+                Deploy by dragging your folder or connecting a Git repo. Add your custom subdomain
+                in Settings → Domain management.
+              </p>
+            </div>
+          </div>
+
+          <!-- GitHub Pages -->
+          <div class="hosting-card">
+            <div class="hosting-left">
+              <div class="hosting-logo">
+                <img
+                  class="github-logo"
+                  src="https://cdn.simpleicons.org/github/181717"
+                  alt="GitHub"
+                  width="48"
+                  height="48"
+                />
+              </div>
+              <h4>GitHub Pages</h4>
+            </div>
+            <div class="hosting-right">
+              <div class="hosting-tags">
+                <span class="hosting-tag tag-free">100% Free</span>
+                <span class="hosting-tag tag-beginner">Git-based</span>
+              </div>
+              <p>
+                Push to a repo and enable Pages in settings. Add a CNAME file with your subdomain
+                and configure DNS.
+              </p>
+            </div>
+          </div>
+
+          <!-- Cloudflare Pages -->
+          <div class="hosting-card">
+            <div class="hosting-left">
+              <div class="hosting-logo">
+                <img
+                  src="https://cdn.simpleicons.org/cloudflare/F48120"
+                  alt="Cloudflare"
+                  width="48"
+                  height="48"
+                />
+              </div>
+              <h4>Cloudflare Pages</h4>
+            </div>
+            <div class="hosting-right">
+              <div class="hosting-tags">
+                <span class="hosting-tag tag-free">Free tier</span>
+                <span class="hosting-tag tag-beginner">Fast CDN</span>
+              </div>
+              <p>
+                Connect your Git repo for auto-deploys. Add custom domains in the dashboard and
+                manage DNS through Cloudflare.
+              </p>
+            </div>
+          </div>
+
+          <!-- Render -->
+          <div class="hosting-card">
+            <div class="hosting-left">
+              <div class="hosting-logo">
+                <img
+                  src="https://cdn.simpleicons.org/render/46E3B7"
+                  alt="Render"
+                  width="48"
+                  height="48"
+                />
+              </div>
+              <h4>Render</h4>
+            </div>
+            <div class="hosting-right">
+              <div class="hosting-tags">
+                <span class="hosting-tag tag-free">Free tier</span>
+                <span class="hosting-tag tag-beginner">Full-stack</span>
+              </div>
+              <p>
+                Deploy static sites, Node.js, Python, and more from Git. Add custom domains in
+                Settings → Custom Domains and point DNS.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+     Buy Your Own Domain
+     ================================ -->
+    <section class="section" id="domains">
+      <div class="container">
+        <h2 class="section-title gradient-text">Buy your own domain</h2>
+        <div class="heading-bar"></div>
+        <p class="section-subtitle">
+          Want something more professional than a subdomain? Custom domains are surprisingly
+          affordable. Here are common options and where to buy them.
+        </p>
+
+        <div class="card" style="margin-bottom: 1.5rem">
+          <h3>
+            <span class="card-icon">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                ></path>
+              </svg>
+            </span>
+            Why buy a domain?
+          </h3>
+          <p style="margin-bottom: 1rem">
+            A custom domain like <code>johndoe.dev</code> or <code>johndoe.me</code> looks more
+            professional on resumes, portfolios, and business cards. You fully own it, and it works
+            with any hosting provider you switch to in the future.
+          </p>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-body">
+                <strong>Pick a registrar</strong>
+                <span
+                  ><a
+                    href="https://namecheap.com"
+                    target="_blank"
+                    style="color: var(--primary); text-decoration: underline"
+                    >Namecheap</a
+                  >
+                  and
+                  <a
+                    href="https://www.cloudflare.com/registrar/"
+                    target="_blank"
+                    style="color: var(--primary); text-decoration: underline"
+                    >Cloudflare Registrar</a
+                  >
+                  are the most recommended for students. Namecheap has a clean interface and good
+                  support. Cloudflare sells domains at cost with no markup.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-body">
+                <strong>Search for your name</strong>
+                <span
+                  >Type your desired domain into the search box. If <code>johndoe.com</code> is
+                  taken, try alternatives like <code>.dev</code>, <code>.me</code>,
+                  <code>.xyz</code>, or <code>.site</code>. These are often cheaper and just as
+                  effective.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-body">
+                <strong>Connect to your host</strong>
+                <span
+                  >After purchase, go to your registrar's DNS settings and add a CNAME record
+                  pointing to your hosting platform (e.g. <code>cname.vercel-dns.com</code> for
+                  Vercel, or <code>your-site.netlify.app</code> for Netlify). Your host's docs will
+                  have the exact value.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>
+            <span class="card-icon">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </span>
+            Common domain prices (approximate, yearly)
+          </h3>
+          <p style="margin-bottom: 1rem">
+            Prices vary by registrar and promotions. These are typical first-year costs from
+            Namecheap as of 2025. Renewal prices are usually higher.
+          </p>
+          <div class="domain-table-wrap">
+            <table class="domain-table">
+              <thead>
+                <tr>
+                  <th>Domain</th>
+                  <th>1st Year Price</th>
+                  <th>Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="tld">.xyz</td>
+                  <td class="price">$1 – $13</td>
+                  <td>~$13</td>
+                  <td>Cheap experiments, student projects</td>
+                </tr>
+                <tr>
+                  <td class="tld">.site</td>
+                  <td class="price">$1 – $8</td>
+                  <td>~$15</td>
+                  <td>General websites, portfolios</td>
+                </tr>
+                <tr>
+                  <td class="tld">.me</td>
+                  <td class="price">$4 – $15</td>
+                  <td>~$20</td>
+                  <td>Personal branding, portfolios</td>
+                </tr>
+                <tr>
+                  <td class="tld">.dev</td>
+                  <td class="price">$15 – $17</td>
+                  <td>~$18</td>
+                  <td>Developers, technical portfolios</td>
+                </tr>
+                <tr>
+                  <td class="tld">.com</td>
+                  <td class="price">$6 – $14</td>
+                  <td>~$14</td>
+                  <td>Most recognized, professional</td>
+                </tr>
+                <tr>
+                  <td class="tld">.info</td>
+                  <td class="price">$3 – $5</td>
+                  <td>~$20</td>
+                  <td>Budget option, info sites</td>
+                </tr>
+                <tr>
+                  <td class="tld">.online</td>
+                  <td class="price">$1 – $5</td>
+                  <td>~$18</td>
+                  <td>Modern alternative to .com</td>
+                </tr>
+                <tr>
+                  <td class="tld">.ph</td>
+                  <td class="price">$40 – $70</td>
+                  <td>~$50+</td>
+                  <td>Philippine businesses, local branding</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted)">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="display: inline; vertical-align: text-bottom; margin-right: 0.3rem"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            Tip: Namecheap often runs promotions where <code>.xyz</code> and <code>.site</code> are
+            under $1 for the first year. Cloudflare Registrar has no markup but requires using their
+            DNS.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+     Discord Community Section
+     ================================ -->
+    <section class="section discord-section" id="discord">
+      <div class="container">
+        <h2 class="section-title gradient-text">Get help on Discord</h2>
+        <div class="heading-bar"></div>
+        <p class="section-subtitle">
+          Join the UC CITCS Discord server to ask questions, request your subdomain, and connect
+          with fellow students.
+        </p>
+        <div class="discord-card">
+          <h2>UC CITCS Discord Server</h2>
+          <p>
+            The official Discord community for CITCS students. Whether you need help deploying your
+            site, choosing a subdomain name, or troubleshooting a bug, there is always someone
+            around to help.
+          </p>
+          <div class="discord-features">
+            <div class="discord-feature">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1 4 11.5a8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                ></path>
+              </svg>
+              Ask questions anytime
+            </div>
+            <div class="discord-feature">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                ></path>
+              </svg>
+              Request subdomains
+            </div>
+            <div class="discord-feature">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              Connect with classmates
+            </div>
+          </div>
+          <a
+            href="https://discord.gg/hj5Tu4Ers"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="discord-btn"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"
+              />
+            </svg>
+            Join UC CITCS Discord
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+     Footer
+     ================================ -->
+    <footer class="footer">
+      <div class="container">
+        <p>CITCS.site — Built for University of the Cordilleras students.</p>
+        <p style="margin-top: 0.35rem; opacity: 0.7">
+          Need help?
+          <a href="https://discord.gg/hj5Tu4Ers" target="_blank">Join the UC CITCS Discord</a>.
+        </p>
+      </div>
+    </footer>
+
+    <!-- ================================
+     Scripts
+     ================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js"></script>
+    <script>
+      /* ---------- Theme Toggle ---------- */
+      const htmlEl = document.documentElement;
+      const themeToggle = document.getElementById("theme-toggle");
+      const STORAGE_KEY = "citcs-theme";
+
+      function getPreferredTheme() {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) return stored;
+        return "dark";
+      }
+
+      function applyTheme(theme) {
+        if (theme === "dark") htmlEl.setAttribute("data-theme", "dark");
+        else htmlEl.removeAttribute("data-theme");
+      }
+
+      function toggleTheme() {
+        const isDark = htmlEl.getAttribute("data-theme") === "dark";
+        const next = isDark ? "light" : "dark";
+        applyTheme(next);
+        localStorage.setItem(STORAGE_KEY, next);
+        updateParticlesTheme();
+      }
+
+      applyTheme(getPreferredTheme());
+      themeToggle.addEventListener("click", toggleTheme);
+
+      /* ---------- tsParticles Hero ---------- */
+      async function initParticles() {
+        if (typeof tsParticles === "undefined" || !window.tsParticles) return;
+        const isDark = htmlEl.getAttribute("data-theme") === "dark";
+        const color = isDark ? "#ffffff" : "#000000";
+        await tsParticles.load("tsparticles", {
+          fullScreen: { enable: false },
+          particles: {
+            number: { value: 55, density: { enable: true, value_area: 800 } },
+            color: { value: color },
+            shape: { type: "circle" },
+            opacity: { value: 0.25, random: true },
+            size: { value: 2, random: { enable: true, minimumValue: 1 } },
+            links: {
+              enable: true,
+              distance: 150,
+              color: color,
+              opacity: 0.1,
+              width: 1,
+            },
+            move: {
+              enable: true,
+              speed: 0.6,
+              direction: "none",
+              random: true,
+              straight: false,
+              outModes: "out",
+            },
+          },
+          interactivity: {
+            detectsOn: "canvas",
+            events: {
+              onHover: { enable: true, mode: "grab" },
+              onClick: { enable: true, mode: "push" },
+              resize: true,
+            },
+            modes: {
+              grab: { distance: 140, links: { opacity: 0.25 } },
+              push: { quantity: 4 },
+            },
+          },
+          detectRetina: true,
+        });
+      }
+
+      function updateParticlesTheme() {
+        const container = tsParticles.dom().length ? tsParticles.dom()[0] : null;
+        if (!container) return;
+        const isDark = htmlEl.getAttribute("data-theme") === "dark";
+        const color = isDark ? "#ffffff" : "#000000";
+        container.options.particles.color.value = color;
+        container.options.particles.links.color = color;
+        container.refresh();
+      }
+
+      if (typeof tsParticles !== "undefined") initParticles();
+
+      /* ---------- Mobile Nav ---------- */
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("nav-links");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("active");
+        const expanded = hamburger.getAttribute("aria-expanded") === "true";
+        hamburger.setAttribute("aria-expanded", String(!expanded));
+      });
+
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLinks.classList.remove("active");
+          hamburger.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      /* ---------- Navbar Scroll Shadow ---------- */
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 10) navbar.classList.add("scrolled");
+        else navbar.classList.remove("scrolled");
+      });
+
+      /* ---------- Smooth Scroll ---------- */
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+          const target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
